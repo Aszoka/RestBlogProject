@@ -59,11 +59,10 @@ public class AppUserController {
     public void addTemplates(@RequestBody Template template) {
         myUserService.createTemplate(template);
     }
-    // blog létrehozása -- mikor választ templatet? létrehozás közben vagy utána?
+
     @PostMapping("/blogs")
     public void createBlog(@RequestBody BlogForm blog, Long templateId) {
         AppUser appUser = myUserService.getLoggedInUser();
-        // kérdés: itt is az AppuserFormot adjam át?
         blog.setAuthorId(appUser.getId());
         blog.setBlogTemplateId(templateId);
         myUserService.createBlog(blog);
