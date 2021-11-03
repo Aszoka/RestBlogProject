@@ -17,6 +17,7 @@ import java.util.*;
 @AllArgsConstructor
 public class AppUserController {
 
+    // handling the authorities in WebSecConfig
 
     MyUserService myUserService;
 
@@ -50,16 +51,19 @@ public class AppUserController {
          return new ResponseEntity<>(myUserService.signUpUser(appUser), HttpStatus.OK);
     }
 
+    // read:all
     @GetMapping (path = "/blogs")
     public List<BlogForm> getAllBlogs() {
         return myUserService.getAllBlogs();
     }
 
+    // role ADMIN
     @PostMapping("/templates")
     public void addTemplates(@RequestBody Template template) {
         myUserService.createTemplate(template);
     }
 
+    // logged in users only
     @PostMapping("/blogs")
     public void createBlog(@RequestBody BlogForm blog, Long templateId) {
         AppUser appUser = myUserService.getLoggedInUser();

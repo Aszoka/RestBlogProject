@@ -81,7 +81,7 @@ public class AppUser implements UserDetails {
     }
 
     public AppUser(AppUserForm user, AppUserRole role) {
-        //this comes from the form from the registration
+        //this comes from the form at the registration
         this(user.getUsernameForm(), user.getFirstNameForm(), user.getLastNameForm(), user.getEmailForm(), user.getPasswordForm(), role);
     }
 

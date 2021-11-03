@@ -92,7 +92,7 @@ public class MyUserService implements UserDetailsService {
     }
 
     public AppUser signUpUser(AppUserForm appUser) {
-        // todo: handle exceptions + rewrite return type
+        // todo: handle exceptions
         if(!isUsernameTaken(appUser.getUsernameForm())
                 && userValidation.validEmail(appUser.getEmailForm())
                 && userValidation.validPassword(appUser.getPasswordForm())
@@ -136,7 +136,7 @@ public class MyUserService implements UserDetailsService {
     public void createBlog(Blog blog) {
         em.persist(blog);
     }
-    //admin feltölti
+    //uploaded by admin
     public void createTemplate(Template template) {
         em.persist(template);
     }
