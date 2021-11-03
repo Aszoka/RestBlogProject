@@ -85,6 +85,18 @@ public class AppUser implements UserDetails {
         this(user.getUsernameForm(), user.getFirstNameForm(), user.getLastNameForm(), user.getEmailForm(), user.getPasswordForm(), role);
     }
 
+    public AppUser(AppUserForm appUserForm) {
+        this(appUserForm.getUsernameForm(), appUserForm.getFirstNameForm(),appUserForm.getLastNameForm(),appUserForm.getEmailForm());
+        blogList = new LinkedList<>();
+    }
+
+    public AppUser(String usernameForm, String firstNameForm, String lastNameForm, String emailForm) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "AppUser{" +

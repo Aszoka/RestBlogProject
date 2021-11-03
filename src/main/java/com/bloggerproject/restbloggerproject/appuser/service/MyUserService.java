@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -70,18 +71,13 @@ public class MyUserService implements UserDetailsService {
         return null;
     }
 
- /*   @Transactional
-    public List<AppUser> getAppUsers () {
-        return em.createQuery("SELECT user FROM AppUser user", AppUser.class)
-                .getResultList();
-    }*/
-
     @Transactional
     public List<AppUserForm> getAppUsers () {
-        List<AppUserForm> usersBack = new LinkedList<>();
-       List <AppUser> appUserDB =
+        List<AppUserForm> usersBack = new ArrayList<>();
+        List <AppUser> appUserDB =
         em.createQuery("SELECT user FROM AppUser user", AppUser.class)
                 .getResultList();
+
         for (AppUser appUser: appUserDB) {
             AppUserForm userBack = new AppUserForm(appUser);
             usersBack.add(userBack);
@@ -95,15 +91,18 @@ public class MyUserService implements UserDetailsService {
                 .getSingleResult();
     }
 
-    public void signUpUser(AppUserForm appUser) {
+    public AppUser signUpUser(AppUserForm appUser) {
         // todo: handle exceptions + rewrite return type
         if(!isUsernameTaken(appUser.getUsernameForm())
-            && userValidation.validEmail(appUser.getEmailForm())
-            && userValidation.validPassword(appUser.getPasswordForm())
+                && userValidation.validEmail(appUser.getEmailForm())
+                && userValidation.validPassword(appUser.getPasswordForm())
         ) {
             signUpUser(new AppUser(appUser, AppUserRole.USER));
+            AppUser registered = (AppUser) loadUserByUsername(appUser.getUsernameForm());
+            return registered;
         } else {
             System.out.println("error");
+            return null;
         }
 
     }
@@ -114,9 +113,17 @@ public class MyUserService implements UserDetailsService {
             em.persist(appUser);
     }
 
-    public List<Blog> getAllBlogs() {
-        return em.createQuery("SELECT blog FROM Blog blog", Blog.class)
+    public List<BlogForm> getAllBlogs() {
+
+        List<Blog> allBlogsDB = em.createQuery("SELECT blog FROM Blog blog", Blog.class)
                 .getResultList();
+
+        List<BlogForm> blogsToBack = new ArrayList<>();
+
+        for(Blog blog : allBlogsDB) {
+            blogsToBack.add(new BlogForm(blog.getBlogTitle(), blog.getBlogAuthor().getId(), blog.getBlogTemplate().getTemplateId()));
+        }
+        return blogsToBack;
     }
 
     public void createBlog(BlogForm blog) {

@@ -1,6 +1,7 @@
 package com.bloggerproject.restbloggerproject.appuser.forms;
 
 import com.bloggerproject.restbloggerproject.appuser.model.AppUser;
+import com.bloggerproject.restbloggerproject.appuser.model.Blog;
 import com.bloggerproject.restbloggerproject.appuser.model.Template;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,4 +22,5 @@ public class BlogForm {
         this.authorId = authorId;
         this.blogTemplateId = blogTemplateId;
     }
+
 }

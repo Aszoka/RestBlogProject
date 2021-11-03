@@ -1,5 +1,6 @@
 package com.bloggerproject.restbloggerproject.appuser.model;
 
+import com.bloggerproject.restbloggerproject.appuser.forms.AppUserForm;
 import com.bloggerproject.restbloggerproject.appuser.forms.BlogForm;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,7 +54,17 @@ public class Blog {
     }
 
     public Blog(BlogForm blogForm, AppUser author, Template template) {
-        this(blogForm.getBlogTitleForm(), author, template);
+        this.blogTitle = blogForm.getBlogTitleForm();
+        this.blogAuthor = author;
+        this.blogTemplate = template;
+
+        postList = new LinkedList<>();
+    }
+
+    public Blog(AppUser author, Template template) {
+
+        this.blogAuthor = author;
+        this.blogTemplate = template;
 
         postList = new LinkedList<>();
     }

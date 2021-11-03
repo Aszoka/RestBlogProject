@@ -46,12 +46,12 @@ public class AppUserController {
 
 
    @PostMapping("/register")
-    public void registerUser(@RequestBody AppUserForm appUser) {
-            myUserService.signUpUser(appUser);
+    public ResponseEntity<AppUser> registerUser(@RequestBody AppUserForm appUser) {
+         return new ResponseEntity<>(myUserService.signUpUser(appUser), HttpStatus.OK);
     }
 
     @GetMapping (path = "/blogs")
-    public List<Blog> getAllBlogs() {
+    public List<BlogForm> getAllBlogs() {
         return myUserService.getAllBlogs();
     }
 
