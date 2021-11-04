@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
 import java.util.*;
 
 @RestController
@@ -29,9 +30,16 @@ public class AppUserController {
     //read:all
     @GetMapping("/users")
     public ResponseEntity<List<AppUserForm>> getAppUsers() {
-        ResponseEntity<List<AppUserForm>> users = new ResponseEntity<List<AppUserForm>>(myUserService.getAppUsers(),HttpStatus.OK);
-        return users;
+        try {
+            ResponseEntity<List<AppUserForm>> users = new ResponseEntity<List<AppUserForm>>(myUserService.getAppUsers(),HttpStatus.OK);
+            return users;
+        } catch (AccessDeniedException e) {
+            System.out.println("no no!!!");
+            return null;
+        }
+
     }
+
 
     //read:all
     // todo rewrite to appUserForm

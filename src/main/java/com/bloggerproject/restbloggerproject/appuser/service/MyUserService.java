@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -72,10 +73,10 @@ public class MyUserService implements UserDetailsService {
     }
 
     @Transactional
-    public List<AppUserForm> getAppUsers () {
+    public List<AppUserForm> getAppUsers  () throws AccessDeniedException {
         List<AppUserForm> usersBack = new ArrayList<>();
-        List <AppUser> appUserDB =
-        em.createQuery("SELECT user FROM AppUser user", AppUser.class)
+
+        List <AppUser> appUserDB =   em.createQuery("SELECT user FROM AppUser user", AppUser.class)
                 .getResultList();
 
         for (AppUser appUser: appUserDB) {
@@ -83,6 +84,7 @@ public class MyUserService implements UserDetailsService {
             usersBack.add(userBack);
         }
         return usersBack;
+
     }
 
     public AppUser getAppUser (Long id) {

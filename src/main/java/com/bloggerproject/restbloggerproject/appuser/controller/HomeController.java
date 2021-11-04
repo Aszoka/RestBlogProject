@@ -20,6 +20,11 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/my-error-page")
+    public String accessDenied(){
+        return "my-error-page";
+    }
+
     @GetMapping("/login")
     public String getLogin(@ModelAttribute("userForm") AppUser userForm){
         return "login";
