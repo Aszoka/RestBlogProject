@@ -1,8 +1,10 @@
 package com.bloggerproject.restbloggerproject.appuser.controller;
 
 import com.bloggerproject.restbloggerproject.appuser.forms.AppUserForm;
+import com.bloggerproject.restbloggerproject.appuser.forms.BlogForm;
 import com.bloggerproject.restbloggerproject.appuser.model.AppUser;
 import com.bloggerproject.restbloggerproject.appuser.model.AppUserRole;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -56,7 +58,7 @@ class AppUserControllerTest {
     @WithMockUser(authorities = "read:self")
     void getAppUsersNotAuth() throws Exception {
         mockMvc.perform(get("/users"))
-                .andExpect(status().is(403));
+                .andExpect(redirectedUrl("/my-error-page"));
     }
 
     @Test
@@ -71,7 +73,7 @@ class AppUserControllerTest {
     @WithMockUser(authorities = "read:self")
     void getAppUserNoAuth() throws Exception {
        mockMvc.perform(get("/users/1"))
-                .andExpect(status().is(403))
+               .andExpect(redirectedUrl("/my-error-page"))
                 .andReturn();
     }
 
@@ -97,18 +99,23 @@ class AppUserControllerTest {
 
     }
 
-    @Test
-    void getAllBlogs() {
-    }
 
-    @Test
-    void createBlog() {
-    }
+ /*   @Test
+    void createBlog() throws Exception {
 
-    @Test
-    void helloEndpointExists() throws Exception {
-        mockMvc.perform(get("/", "/hello"))
-                .andExpect(status().isOk());
-    }
+        BlogForm newBlog = new BlogForm("Test title", 1L,1L);
+
+        String body = mapper.writeValueAsString(newBlog);
+        mockMvc.perform(
+                post("/blogs")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body)
+
+        )
+                .andExpect(status().isOk())
+                .andReturn();
+    }*/
+
+
 
 }

@@ -134,7 +134,6 @@ public class MyUserService implements UserDetailsService {
         createBlog(new Blog(blog.getBlogTitleForm(), appUser, template));
     }
 
-    // todo: create blogform
     public void createBlog(Blog blog) {
         em.persist(blog);
     }
