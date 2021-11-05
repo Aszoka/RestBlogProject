@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title> Blogging </title>
@@ -14,14 +14,14 @@
   <input type="checkbox" id="flip">
   <div class="cover">
     <div class="front">
-      <img th:src="@{/images/signin.jpg}" alt="">
+      <img th:src="@{/images/signin.jpg}" alt="pumpkin">
       <div class="text">
         <!--<span class="text-1">Every new friend is a <br> new adventure</span>-->
         <span class="text-2">Let's get connected</span>
       </div>
     </div>
     <div class="back">
-      <img class="backImg" th:src="@{/images/register.jpg}" alt="">
+      <img class="backImg" th:src="@{/images/register.jpg}" alt="dog">
       <div class="text">
         <!-- <span class="text-1">Complete miles of journey <br> with one step</span>-->
         <span class="text-2">Let's get started</span>
@@ -37,11 +37,11 @@
             <div class="input-box">
               <i class="fas fa-user"></i>
               <label  class="sr-only">Username</label>
-              <input type="text" name="username" required data-th-field="*{username}" />
+              <input type="text" name="username" required data-th-field="*{username}">
             </div>
             <div class="input-box">
               <i class="fas fa-lock"></i>
-              <input type="password"  placeholder="Enter your password" required data-th-field="*{password}" />
+              <input type="password"  placeholder="Enter your password" required data-th-field="*{password}">
             </div>
             <div class="text"><a href="#">Forgot password?</a></div>
             <div class="button input-box">
@@ -52,33 +52,57 @@
         </form>
       </div>
       <div class="signup-form">
+
         <div class="title">Signup</div>
-        <form action="#" th:action="@{/register}" method="post" >
+
+        <form action="#" th:action="@{/register}" th:object="${appUserForm}" method="post">
+
           <div class="input-boxes">
+
             <div class="input-box">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your username" required>
+              <label>
+                <input type="text" name="username" placeholder="Enter your username" required data-field="*{usernameForm}">
+              </label>
             </div>
+
             <div class="input-box">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Enter your password" required >
-            </div>
+            <i class="fas fa-lock"></i>
+            <label>
+              <input type="password" placeholder="Enter your password" required field="*{passwordForm}">
+            </label>
+           </div>
+
+
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <label>
+                  <input type="text" placeholder="Enter your first name" required field="*{firstNameForm}">
+                </label>
+              </div>
+
+              <div class="input-box">
+                <i class="far fa-user"></i>
+                <label>
+                  <input type="text" placeholder="Enter your last name" required field="*{lastNameForm}">
+                </label>
+              </div>
+
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <label>
+                  <input type="text" placeholder="Enter your email" required field="*{emailForm}">
+                </label>
+
+
+              </div>
+
            <!-- <div class="input-box">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Confirm password" required >
             </div>-->
-            <div class="input-box">
-              <i class="fas fa-envelope"></i>
-              <input type="text" placeholder="Enter your email" required >
-            </div>
-            <div class="input-box">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Enter your first name" required>
-            </div>
-            <div class="input-box">
-              <i class="far fa-user"></i>
-              <input type="text" placeholder="Enter your last name" required >
-            </div>
+
+
 
             <div class="button input-box">
               <input type="submit" value="Submit">

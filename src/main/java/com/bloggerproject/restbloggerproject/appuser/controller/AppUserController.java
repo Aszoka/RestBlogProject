@@ -8,7 +8,9 @@ import com.bloggerproject.restbloggerproject.appuser.model.Template;
 import com.bloggerproject.restbloggerproject.appuser.service.MyUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.AccessDeniedException;
@@ -22,10 +24,10 @@ public class AppUserController {
 
     MyUserService myUserService;
 
-    @GetMapping(value = {"/","/hello"})
+ /*   @GetMapping(value = {"/","/hello"})
     public ResponseEntity<String> hello() {
         return new ResponseEntity<>("hello", HttpStatus.OK);
-    }
+    }*/
 
     //read:all
     @GetMapping("/users")
@@ -53,11 +55,12 @@ public class AppUserController {
        return myUserService.getLoggedInUser();
     }
 
+    @PostMapping(value="/register")
+    public ResponseEntity<AppUser> registerUser(@RequestBody AppUserForm appUserForm) {
 
-   @PostMapping("/register")
-    public ResponseEntity<AppUser> registerUser(@RequestBody AppUserForm appUser) {
-         return new ResponseEntity<>(myUserService.signUpUser(appUser), HttpStatus.OK);
+        return new ResponseEntity<>(myUserService.signUpUser(appUserForm), HttpStatus.OK);
     }
+
 
     // read:all
     @GetMapping (path = "/blogs")
