@@ -55,21 +55,21 @@
 
         <div class="title">Signup</div>
 
-        <form action="#" th:action="@{/register}" th:object="${appUserForm}" method="post">
+        <form>
 
           <div class="input-boxes">
 
             <div class="input-box">
               <i class="fas fa-user"></i>
               <label>
-                <input type="text" name="username" placeholder="Enter your username" required data-field="*{usernameForm}">
+                <input type="text" name="username" placeholder="Enter your username" required >
               </label>
             </div>
 
             <div class="input-box">
             <i class="fas fa-lock"></i>
             <label>
-              <input type="password" placeholder="Enter your password" required field="*{passwordForm}">
+              <input type="password" placeholder="Enter your password" required >
             </label>
            </div>
 
@@ -77,21 +77,21 @@
               <div class="input-box">
                 <i class="fas fa-user"></i>
                 <label>
-                  <input type="text" placeholder="Enter your first name" required field="*{firstNameForm}">
+                  <input type="text" placeholder="Enter your first name" required >
                 </label>
               </div>
 
               <div class="input-box">
                 <i class="far fa-user"></i>
                 <label>
-                  <input type="text" placeholder="Enter your last name" required field="*{lastNameForm}">
+                  <input type="text" placeholder="Enter your last name" required >
                 </label>
               </div>
 
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
                 <label>
-                  <input type="text" placeholder="Enter your email" required field="*{emailForm}">
+                  <input type="text" placeholder="Enter your email" required >
                 </label>
 
 

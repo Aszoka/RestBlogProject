@@ -23,4 +23,8 @@ public class BlogForm {
         this.blogTemplateId = blogTemplateId;
     }
 
+    public BlogForm(String blogTitleForm, Long blogTemplateId) {
+        this.blogTitleForm = blogTitleForm;
+        this.blogTemplateId = blogTemplateId;
+    }
 }

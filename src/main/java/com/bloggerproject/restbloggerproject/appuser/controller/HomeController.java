@@ -40,28 +40,5 @@ public class HomeController {
         return "home";
     }*/
 
-/*   @GetMapping("/register")
-    public String getRegister(@ModelAttribute("signInForm") AppUserForm signInForm){
-        return "login";
-    }*/
-
- /*  @PostMapping("/register")
-    public String postRegister(@ModelAttribute("signInForm") AppUserForm signInForm, Model model){
-       model.addAttribute("usernameForm", signInForm.getUsernameForm());
-       model.addAttribute("passwordForm", signInForm.getPasswordForm());
-       model.addAttribute("firstNameForm", signInForm.getFirstNameForm());
-       model.addAttribute("lastNameForm", signInForm.getLastNameForm());
-       model.addAttribute("emailForm", signInForm.getEmailForm());
-
-       myUserService.signUpUser(signInForm);
-
-        return "home";
-    }*/
-
-    @GetMapping("/register")
-    public String getRegister(Model model){
-        model.addAttribute("appUserForm", new AppUserForm());
-        return "login";
-    }
 
 }

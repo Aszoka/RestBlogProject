@@ -42,7 +42,6 @@ public class AppUserController {
 
     }
 
-
     //read:all
     // todo rewrite to appUserForm
     @GetMapping(path = "users/{userId}")
@@ -64,8 +63,9 @@ public class AppUserController {
 
     // read:all
     @GetMapping (path = "/blogs")
-    public List<BlogForm> getAllBlogs() {
-        return myUserService.getAllBlogs();
+    public ResponseEntity<List<BlogForm>> getAllBlogs() {
+        ResponseEntity<List<BlogForm>> allBlogs = new ResponseEntity(myUserService.getAllBlogs(), HttpStatus.OK);
+        return allBlogs;
     }
 
     // role ADMIN
